@@ -1,5 +1,6 @@
 package collatz;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class CollatzTest {
@@ -20,6 +21,7 @@ public class CollatzTest {
     }
 
     @Test
+    @Ignore("No need to run a two and a half minute long test each time")
     public void collatzOfBigNumbersShouldReturnOne() {
         //NB: BigNumbers = 163840000 for now.
         for (long i = 3; i <= 163840000; i++) {
