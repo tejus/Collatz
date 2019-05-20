@@ -63,4 +63,14 @@ public class CollatzTest {
                 assert simple[j] == memoized[j];
         }
     }
+
+    @Test
+    public void timeDifferenceShouldMatchParameter() {
+        long delayDurationRequested = 5 * (long) Math.pow(10, 9);
+        long runDuration = Collatz.doTimings(delayDurationRequested);
+        //Define maximum variance of 10ms
+        long maxVariance = 10 * (long) Math.pow(10, 6);
+        System.out.println(runDuration);
+        assert Math.abs(delayDurationRequested - runDuration) < maxVariance;
+    }
 }
