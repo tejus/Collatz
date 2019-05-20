@@ -63,4 +63,19 @@ public class Collatz {
         }
         return sequenceLengths;
     }
+
+    static long doTimings(long n) {
+        System.gc();
+        long startTime;
+        long endTime;
+        long delayTimeInMs = n / (long) Math.pow(10, 6);
+        startTime = System.nanoTime();
+        try {
+            Thread.sleep(delayTimeInMs);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        endTime = System.nanoTime();
+        return endTime - startTime;
+    }
 }
