@@ -3,21 +3,23 @@ package collatz;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static collatz.Collatz.*;
+
 public class CollatzTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void collatzOfZeroShouldThrowIllegalArgumentException() {
-        Collatz.collatz(0);
+        collatz(0);
     }
 
     @Test
     public void collatzOfOneShouldReturnOne() {
-        assert Collatz.collatz(1) == 1;
+        assert collatz(1) == 1;
     }
 
     @Test
     public void collatzOfTwoShouldReturnOne() {
-        assert Collatz.collatz(2) == 1;
+        assert collatz(2) == 1;
     }
 
     @Test
@@ -25,13 +27,13 @@ public class CollatzTest {
     public void collatzOfBigNumbersShouldReturnOne() {
         //NB: BigNumbers = 163840000 for now.
         for (long i = 3; i <= 163840000; i++) {
-            assert Collatz.collatz(i) == 1;
+            assert collatz(i) == 1;
         }
     }
 
     @Test
     public void sequenceLengthsTillThree() {
-        int[] lengths = Collatz.simpleComputeSequenceLengths(3);
+        int[] lengths = simpleComputeSequenceLengths(3);
         assert lengths.length == 4;
         assert lengths[1] == 1;
         assert lengths[2] == 2;
@@ -40,7 +42,7 @@ public class CollatzTest {
 
     @Test
     public void memoizedSequenceLengthsTillNine() {
-        int[] lengths = Collatz.memoizedComputeSequenceLengths(9);
+        int[] lengths = memoizedComputeSequenceLengths(9);
         assert lengths.length == 10;
         assert lengths[1] == 1;
         assert lengths[2] == 2;
@@ -58,8 +60,8 @@ public class CollatzTest {
     public void simpleAndMemoizedSequenceLengthsShouldCorrespond() {
         int length = 10000;
         for (int i = 1; i < length; i++) {
-            int[] simple = Collatz.simpleComputeSequenceLengths(i);
-            int[] memoized = Collatz.memoizedComputeSequenceLengths(i);
+            int[] simple = simpleComputeSequenceLengths(i);
+            int[] memoized = memoizedComputeSequenceLengths(i);
             for (int j = 1; j <= i; j++)
                 assert simple[j] == memoized[j];
         }
@@ -68,6 +70,6 @@ public class CollatzTest {
     @Test
     public void timeDifferenceShouldBePositive() {
         int length = 40960000;
-        assert Collatz.doTimings(length) > 0;
+        assert doTimings(length) > 0;
     }
 }
