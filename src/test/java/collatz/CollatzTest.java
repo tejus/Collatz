@@ -52,4 +52,15 @@ public class CollatzTest {
         assert lengths[8] == 4;
         assert lengths[9] == 20;
     }
+
+    @Test
+    public void simpleAndMemoizedSequenceLengthsShouldCorrespond() {
+        int length = 10000;
+        for (int i = 1; i < length; i++) {
+            int[] simple = Collatz.simpleComputeSequenceLengths(i);
+            int[] memoized = Collatz.memoizedComputeSequenceLengths(i);
+            for (int j = 1; j <= i; j++)
+                assert simple[j] == memoized[j];
+        }
+    }
 }
