@@ -54,6 +54,7 @@ public class CollatzTest {
     }
 
     @Test
+    @Ignore("No need to run a fifteen seconds long test each time")
     public void simpleAndMemoizedSequenceLengthsShouldCorrespond() {
         int length = 10000;
         for (int i = 1; i < length; i++) {
