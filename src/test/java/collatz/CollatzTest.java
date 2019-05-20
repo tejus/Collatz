@@ -28,4 +28,13 @@ public class CollatzTest {
             assert Collatz.collatz(i) == 1;
         }
     }
+
+    @Test
+    public void sequenceLengthsOfThree() {
+        int[] lengths = Collatz.simpleComputeSequenceLengths(3);
+        assert lengths.length == 4;
+        assert lengths[1] == 1;
+        assert lengths[2] == 2;
+        assert lengths[3] == 8;
+    }
 }
