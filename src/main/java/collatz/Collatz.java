@@ -23,9 +23,11 @@ public class Collatz {
         }
 
         int[] sequenceLengths = new int[((int) n) + 1];
+        long currentN;
+        int count;
         for (int i = 1; i <= (int) n; i++) {
-            long currentN = i;
-            int count = 0;
+            currentN = i;
+            count = 0;
             do {
                 count++;
                 if (currentN == 1) break;
@@ -45,9 +47,11 @@ public class Collatz {
         }
 
         int[] sequenceLengths = new int[((int) n) + 1];
+        long currentN;
+        int count;
         for (int i = 1; i <= (int) n; i++) {
-            long currentN = i;
-            int count = 0;
+            currentN = i;
+            count = 0;
             do {
                 //Check if the current sequence length has been calculated already
                 if (currentN < i) {
