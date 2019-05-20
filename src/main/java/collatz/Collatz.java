@@ -16,12 +16,6 @@ public class Collatz {
     }
 
     static int[] simpleComputeSequenceLengths(final long n) {
-        //Let's throw an IllegalArgumentException if n is beyond the range
-        //of an integer in Java, since int arrays can't be initialised with long as size
-        if (n > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("Input number too long!");
-        }
-
         int[] sequenceLengths = new int[((int) n) + 1];
         long currentN;
         int count;
@@ -40,12 +34,6 @@ public class Collatz {
     }
 
     static int[] memoizedComputeSequenceLengths(final long n) {
-        //Let's throw an IllegalArgumentException if n is beyond the range
-        //of an integer in Java, since int arrays can't be initialised with long as size
-        if (n > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("Input number too long!");
-        }
-
         int[] sequenceLengths = new int[((int) n) + 1];
         long currentN;
         int count;
@@ -69,17 +57,38 @@ public class Collatz {
     }
 
     static long doTimings(long n) {
-        System.gc();
+        //Let's throw an IllegalArgumentException if n is beyond the range
+        //of an integer in Java, since int arrays can't be initialised with long as size
+        if (n > Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("Input number too long!");
+        }
+
         long startTime;
         long endTime;
-        long delayTimeInMs = n / (long) Math.pow(10, 6);
+        long simpleTime;
+        long memoizedTime;
+        int[] simple;
+        int[] memoized;
+
+        System.gc();
+        System.out.println("Starting test with simple method");
         startTime = System.nanoTime();
-        try {
-            Thread.sleep(delayTimeInMs);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        simple = simpleComputeSequenceLengths(n);
         endTime = System.nanoTime();
-        return endTime - startTime;
+        simpleTime = endTime - startTime;
+        System.out.println("Simple method took " + simpleTime / Math.pow(10, 6) + "ms to run");
+
+        System.gc();
+        System.out.println("Starting test with memoized method");
+        startTime = System.nanoTime();
+        memoized = memoizedComputeSequenceLengths(n);
+        endTime = System.nanoTime();
+        memoizedTime = endTime - startTime;
+        System.out.println("Memoized method took " + memoizedTime / Math.pow(10, 6) + "ms to run");
+
+        for (int i = 1; i <= n; i++) {
+            assert simple[i] == memoized[i];
+        }
+        return simpleTime - memoizedTime;
     }
 }
