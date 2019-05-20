@@ -30,11 +30,26 @@ public class CollatzTest {
     }
 
     @Test
-    public void sequenceLengthsOfThree() {
+    public void sequenceLengthsTillThree() {
         int[] lengths = Collatz.simpleComputeSequenceLengths(3);
         assert lengths.length == 4;
         assert lengths[1] == 1;
         assert lengths[2] == 2;
         assert lengths[3] == 8;
+    }
+
+    @Test
+    public void memoizedSequenceLengthsTillNine() {
+        int[] lengths = Collatz.memoizedComputeSequenceLengths(9);
+        assert lengths.length == 10;
+        assert lengths[1] == 1;
+        assert lengths[2] == 2;
+        assert lengths[3] == 8;
+        assert lengths[4] == 3;
+        assert lengths[5] == 6;
+        assert lengths[6] == 9;
+        assert lengths[7] == 17;
+        assert lengths[8] == 4;
+        assert lengths[9] == 20;
     }
 }
