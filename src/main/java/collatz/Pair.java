@@ -21,4 +21,12 @@ public class Pair<A, B> {
     public String toString() {
         return "(" + first + ", " + second + ")";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        else if (!(obj instanceof Pair)) return false;
+        return this.first == ((Pair) obj)._1()
+                && this.second == ((Pair) obj).second;
+    }
 }
