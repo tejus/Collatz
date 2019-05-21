@@ -1,5 +1,7 @@
 package collatz;
 
+import java.util.List;
+
 public class Collatz {
 
     static int collatz(long number) {
@@ -110,5 +112,9 @@ public class Collatz {
         } else {
             return n * 3 + 1;
         }
+    }
+
+    static List<Long> sequenceOf(long n) {
+        return null;
     }
 }
