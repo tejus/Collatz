@@ -146,18 +146,6 @@ public class Collatz {
         if (n < 1 || n > (Long.MAX_VALUE - 1) / 3) {
             throw new IllegalArgumentException("Input value out of range!");
         }
-
-        if (n == 1) {
-            return 1;
-        }
-
-        long currentN = n;
-        int count = 1;
-        while (currentN > 1) {
-            count++;
-            if (currentN % 2 == 0) currentN /= 2;
-            else currentN = currentN * 3 + 1;
-        }
-        return count;
+        return sequenceOf(n).size();
     }
 }
