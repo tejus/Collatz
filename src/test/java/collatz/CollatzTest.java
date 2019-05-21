@@ -3,6 +3,8 @@ package collatz;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -217,6 +219,55 @@ public class CollatzTest {
             fail("Exception not thrown for large input in lengthOfSequence()!");
         } catch (Exception e) {
             System.out.println("lengthOfSequence() test passed for large input");
+        }
+    }
+
+    @Test
+    public void equalLengthTwinsOf28To30ShouldReturnTwoItems() {
+        long lo = 28;
+        long hi = 30;
+
+        List<Pair<Long, Integer>> resultOne =  equalLengthTwins(lo, lo);
+        List<Pair<Long, Integer>> resultTwo =  equalLengthTwins(lo, hi);
+
+        assert resultOne != null;
+        assert resultTwo != null;
+        assert resultOne.size() == 1;
+        assert resultTwo.size() == 2;
+        assert resultOne.contains(new Pair<>(28L, 19));
+        assert resultTwo.contains(new Pair<>(28L, 19));
+        assert resultTwo.contains(new Pair<>(29L, 19));
+    }
+
+    @Test
+    public void equalLengthTwinsWithAnyInvalidInputShouldThrowException() {
+        Random random = new Random();
+        long inputNegative = -(abs(random.nextInt()) + 2);
+        long inputZero = 0;
+        long inputValid = abs(random.nextInt()) + 2;
+        long inputLarge = (Long.MAX_VALUE - 1) / 3;
+        long inputLarger = (Long.MAX_VALUE - 1) / 3 + 1;
+
+        List<Long> inputs = new ArrayList<>(Arrays.asList(inputNegative, inputZero, inputValid, inputLarger));
+
+        for (int i = 0; i < inputs.size(); i++) {
+            for (int j = 0; j < inputs.size(); j++) {
+                try {
+                    List<Pair<Long, Integer>> resultNegative = equalLengthTwins(inputs.get(i), inputs.get(j));
+                    if (i != 2 && j != 2)
+                        fail("Exception not thrown for inputs in lengthOfSequence()!");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("lengthOfSequence() test passed for invalid inputs "
+                            + inputs.get(i) + " and " + inputs.get(j));
+                }
+            }
+        }
+
+        try {
+            List<Pair<Long, Integer>> resultNegative = equalLengthTwins(inputValid, inputLarge);
+            fail("Exception not thrown for inputs in lengthOfSequence()!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("lengthOfSequence() test passed for large hi input");
         }
     }
 }
