@@ -57,10 +57,14 @@ public class Collatz {
     }
 
     static long doTimings(long n) {
-        //Let's throw an IllegalArgumentException if n is beyond the range
-        //of an integer in Java, since int arrays can't be initialised with long as size
-        if (n > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("Input number too long!");
+        //Let's throw an IllegalArgumentException if n is beyond a large value,
+        //since large values will throw an OutOfMemoryException. 40960000 works
+        //on my system for this purpose.
+        int limit = 40960000;
+        if (n > limit) {
+            throw new IllegalArgumentException("Input number longer than " + limit + " !");
+        } else if (n < 1) {
+            throw new IllegalArgumentException("Input number needs to be greater than zero!");
         }
 
         long startTime;

@@ -72,4 +72,10 @@ public class CollatzTest {
         int length = 40960000;
         assert doTimings(length) > 0;
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void doTimingsInvalidInputShouldThrowException() {
+        long length = Integer.MAX_VALUE;
+        assert doTimings(length) > 0;
+    }
 }
