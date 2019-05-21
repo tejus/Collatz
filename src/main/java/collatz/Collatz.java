@@ -97,6 +97,18 @@ public class Collatz {
     }
 
     static long collatz_1(long n) {
-        return 0;
+        //Check for values lesser than 1 or values that will push the result
+        //out of the max range of long type.
+        if (n < 1 || n > (Long.MAX_VALUE - 1) / 3) {
+            throw new IllegalArgumentException("Input value out of range!");
+        }
+
+        if (n == 1) {
+            return 1;
+        } else if (n % 2 == 0) {
+            return n / 2;
+        } else {
+            return n * 3 + 1;
+        }
     }
 }
