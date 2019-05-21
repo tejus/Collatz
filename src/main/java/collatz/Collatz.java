@@ -138,4 +138,8 @@ public class Collatz {
     static int lengthOfSequence(long n) {
         return sequenceOf(n).size();
     }
+
+    static List<Pair<Long, Integer>> equalLengthTwins(long lo, long hi) {
+        return null;
+    }
 }
