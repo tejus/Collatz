@@ -141,11 +141,6 @@ public class Collatz {
     }
 
     static int lengthOfSequence(long n) {
-        //Check for values lesser than 1 or values that will push the result
-        //out of the max range of long type.
-        if (n < 1 || n > (Long.MAX_VALUE - 1) / 3) {
-            throw new IllegalArgumentException("Input value out of range!");
-        }
         return sequenceOf(n).size();
     }
 }
