@@ -3,7 +3,11 @@ package collatz;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Random;
+
 import static collatz.Collatz.*;
+import static java.lang.Math.abs;
+import static junit.framework.TestCase.fail;
 
 public class CollatzTest {
 
@@ -77,5 +81,48 @@ public class CollatzTest {
     public void doTimingsInvalidInputShouldThrowException() {
         long length = Integer.MAX_VALUE;
         assert doTimings(length) > 0;
+    }
+
+    @Test
+    public void collatz_1ShouldReturnOneStepOfCollatz() {
+        Random random = new Random();
+        long inputOne = 1;
+        long inputEven = (long) abs(random.nextInt()) * 2;
+        long inputOdd = (long) abs(random.nextInt()) * 2 + 1;
+        System.out.println("Testing with inputs " + inputOne + " " + inputEven + " " + inputOdd);
+        assert collatz_1(inputOne) == 1;
+        assert collatz_1(inputEven) == inputEven / 2;
+        assert collatz_1(inputOdd) == inputOdd * 3 + 1;
+    }
+
+    @Test
+    public void collatz_1WithInvalidInputShouldThrowException() {
+        Random random = new Random();
+        long inputNegative = -(abs(random.nextInt()));
+        long inputZero = 0;
+        long inputLarge = (Long.MAX_VALUE - 1) / 3 + 1;
+
+        try {
+            long resultNegative = collatz_1(inputNegative);
+            fail("Exception not thrown for negative input!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Test passed for negative input");
+        }
+
+        try {
+            long resultZero = collatz_1(inputZero);
+            fail("Exception not thrown for input of zero!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Test passed for input of zero");
+        }
+
+        long resultLarge = 0;
+        try {
+            resultLarge = collatz_1(inputLarge);
+            fail("Exception not thrown for large input!");
+        } catch (Exception e) {
+            System.out.println("Test passed for large input");
+        }
+        System.out.println(resultLarge);
     }
 }
