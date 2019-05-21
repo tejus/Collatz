@@ -293,7 +293,7 @@ public class CollatzTest {
         for (int i = 0; i < inputs.size(); i++) {
             for (int j = 0; j < inputs.size(); j++) {
                 try {
-                    List<Pair<Long, Integer>> resultNegative = equalLengthTwins(inputs.get(i), inputs.get(j));
+                    List<Pair<Long, Integer>> result = equalLengthTwins(inputs.get(i), inputs.get(j));
                     if (i != 2 && j != 2)
                         fail("Exception not thrown for inputs in lengthOfSequence()!");
                 } catch (IllegalArgumentException e) {
@@ -304,10 +304,46 @@ public class CollatzTest {
         }
 
         try {
-            List<Pair<Long, Integer>> resultNegative = equalLengthTwins(inputValid, inputLarge);
+            List<Pair<Long, Integer>> result = equalLengthTwins(inputValid, inputLarge);
             fail("Exception not thrown for inputs in lengthOfSequence()!");
         } catch (IllegalArgumentException e) {
             System.out.println("lengthOfSequence() test passed for large hi input");
+        }
+    }
+
+    @Test
+    public void equalMaxValueTwinsOf5And6ShouldReturn5And16() {
+        long lo = 5;
+        long hi = 6;
+
+        List<Pair<Long, Long>> result = equalMaxValueTwins(lo, hi);
+
+        assert result != null;
+        assert result.size() == 1;
+        assert result.contains(new Pair<>(5L, 16L));
+    }
+
+    @Test
+    public void equalMaxValueTwinsWithInvalidInputShouldThrowException() {
+        Random random = new Random();
+        long inputNegative = -(abs(random.nextInt()) + 2);
+        long inputZero = 0;
+        long inputValid = 40960000;
+        long inputLarge = (Long.MAX_VALUE - 1) / 3;
+
+        List<Long> inputs = new ArrayList<>(Arrays.asList(inputNegative, inputZero, inputValid, inputLarge));
+
+        for (int i = 0; i < inputs.size(); i++) {
+            for (int j = 0; j < inputs.size(); j++) {
+                try {
+                    List<Pair<Long, Long>> result = equalMaxValueTwins(inputs.get(i), inputs.get(j));
+                    if (i != 2 && j != 2)
+                        fail("Exception not thrown for inputs in lengthOfSequence()!");
+                } catch (IllegalArgumentException e) {
+                    System.out.println("lengthOfSequence() test passed for invalid inputs "
+                            + inputs.get(i) + " and " + inputs.get(j));
+                }
+            }
         }
     }
 }
