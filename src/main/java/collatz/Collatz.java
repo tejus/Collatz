@@ -167,4 +167,8 @@ public class Collatz {
         }
         return result;
     }
+
+    static List<Pair<Long, Long>> equalMaxValueTwins(long lo, long hi) {
+        return null;
+    }
 }
