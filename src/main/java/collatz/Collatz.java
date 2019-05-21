@@ -95,4 +95,8 @@ public class Collatz {
         }
         return simpleTime - memoizedTime;
     }
+
+    static long collatz_1(long n) {
+        return 0;
+    }
 }
