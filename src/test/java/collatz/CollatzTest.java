@@ -3,6 +3,7 @@ package collatz;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.Random;
 
 import static collatz.Collatz.*;
@@ -87,8 +88,10 @@ public class CollatzTest {
     public void collatz_1ShouldReturnOneStepOfCollatz() {
         Random random = new Random();
         long inputOne = 1;
+
         long inputEven = (long) abs(random.nextInt()) * 2;
         long inputOdd = (long) abs(random.nextInt()) * 2 + 1;
+
         System.out.println("Testing with inputs " + inputOne + " " + inputEven + " " + inputOdd);
         assert collatz_1(inputOne) == 1;
         assert collatz_1(inputEven) == inputEven / 2;
@@ -123,6 +126,56 @@ public class CollatzTest {
         } catch (Exception e) {
             System.out.println("Test passed for large input");
         }
-        System.out.println(resultLarge);
+    }
+
+    @Test
+    public void sequenceOfShouldReturnValidList() {
+        Random random = new Random();
+        long inputOne = 1;
+        long inputKnown = 3;
+        long inputRandom = abs(random.nextInt());
+
+        List<Long> resultOne = sequenceOf(inputOne);
+        List<Long> resultKnown = sequenceOf(inputKnown);
+        List<Long> resultRandom = sequenceOf(inputRandom);
+
+        System.out.println("Testing with random input " + inputRandom);
+        assert resultOne != null;
+        assert resultOne.get(0) == 1;
+        assert resultKnown != null;
+        assert resultKnown.get(3) == 16;
+        assert resultKnown.get(7) == 1;
+        assert resultRandom != null;
+        assert resultRandom.get(resultRandom.size() - 1) == 1;
+    }
+
+    @Test
+    public void sequenceOfWithInvalidInputShouldThrowException() {
+        Random random = new Random();
+        long inputNegative = -(abs(random.nextInt()));
+        long inputZero = 0;
+        long inputLarge = (Long.MAX_VALUE - 1) / 3 + 1;
+
+        try {
+            List<Long> resultNegative = sequenceOf(inputNegative);
+            fail("Exception not thrown for negative input!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Test passed for negative input");
+        }
+
+        try {
+            List<Long> resultZero = sequenceOf(inputZero);
+            fail("Exception not thrown for input of zero!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Test passed for input of zero");
+        }
+
+        List<Long> resultLarge;
+        try {
+            resultLarge = sequenceOf(inputLarge);
+            fail("Exception not thrown for large input!");
+        } catch (Exception e) {
+            System.out.println("Test passed for large input");
+        }
     }
 }
