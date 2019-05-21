@@ -168,7 +168,29 @@ public class Collatz {
         return result;
     }
 
-    static List<Pair<Long, Long>> equalMaxValueTwins(long lo, long hi) {
-        return null;
+    static List<Pair<Long, Long>> equalMaxValueTwins(final long lo, final long hi) {
+        //Check for values lesser than 1 or values that will push the result
+        //out of the max range of long type.
+        if (lo < 1 || lo > 40960000) {
+            throw new IllegalArgumentException("Input value out of range!");
+        }
+        if (hi < 1 || hi > 40960000) {
+            throw new IllegalArgumentException("Input value out of range!");
+        }
+
+        long[] maxValues = new long[(int) (hi - lo) + 2];
+
+        for (int i = 0; i <= hi - lo + 1; i++) {
+            maxValues[i] = largestValueInSequence(lo + i);
+        }
+
+        List<Pair<Long, Long>> result = new ArrayList<>();
+        for (int i = 0; i <= hi - lo; i++) {
+            if (maxValues[i] == maxValues[i + 1]) {
+                Pair<Long, Long> pair = new Pair<>(lo + i, maxValues[i + 1]);
+                result.add(pair);
+            }
+        }
+        return result;
     }
 }
