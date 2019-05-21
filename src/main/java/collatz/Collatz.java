@@ -139,4 +139,8 @@ public class Collatz {
         }
         return result;
     }
+
+    static int lengthOfSequence(long n) {
+        return 0;
+    }
 }
