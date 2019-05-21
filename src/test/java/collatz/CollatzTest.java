@@ -89,7 +89,7 @@ public class CollatzTest {
         Random random = new Random();
         long inputOne = 1;
 
-        long inputEven = (long) abs(random.nextInt()) * 2;
+        long inputEven = (long) abs(random.nextInt()) * 2 + 2;
         long inputOdd = (long) abs(random.nextInt()) * 2 + 1;
 
         System.out.println("Testing with inputs " + inputOne + " " + inputEven + " " + inputOdd);
@@ -101,7 +101,7 @@ public class CollatzTest {
     @Test
     public void collatz_1WithInvalidInputShouldThrowException() {
         Random random = new Random();
-        long inputNegative = -(abs(random.nextInt()));
+        long inputNegative = -(abs(random.nextInt()) + 2);
         long inputZero = 0;
         long inputLarge = (Long.MAX_VALUE - 1) / 3 + 1;
 
@@ -118,10 +118,8 @@ public class CollatzTest {
         } catch (IllegalArgumentException e) {
             System.out.println("Test passed for input of zero");
         }
-
-        long resultLarge = 0;
         try {
-            resultLarge = collatz_1(inputLarge);
+            long resultLarge = collatz_1(inputLarge);
             fail("Exception not thrown for large input!");
         } catch (Exception e) {
             System.out.println("Test passed for large input");
@@ -133,7 +131,7 @@ public class CollatzTest {
         Random random = new Random();
         long inputOne = 1;
         long inputKnown = 3;
-        long inputRandom = abs(random.nextInt());
+        long inputRandom = abs(random.nextInt()) + 2;
 
         List<Long> resultOne = sequenceOf(inputOne);
         List<Long> resultKnown = sequenceOf(inputKnown);
@@ -152,7 +150,7 @@ public class CollatzTest {
     @Test
     public void sequenceOfWithInvalidInputShouldThrowException() {
         Random random = new Random();
-        long inputNegative = -(abs(random.nextInt()));
+        long inputNegative = -(abs(random.nextInt()) + 2);
         long inputZero = 0;
         long inputLarge = (Long.MAX_VALUE - 1) / 3 + 1;
 
@@ -170,9 +168,8 @@ public class CollatzTest {
             System.out.println("Test passed for input of zero");
         }
 
-        List<Long> resultLarge;
         try {
-            resultLarge = sequenceOf(inputLarge);
+            List<Long> resultLarge = sequenceOf(inputLarge);
             fail("Exception not thrown for large input!");
         } catch (Exception e) {
             System.out.println("Test passed for large input");
