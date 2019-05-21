@@ -175,4 +175,46 @@ public class CollatzTest {
             System.out.println("Test passed for large input");
         }
     }
+    @Test
+    public void lengthOfSequenceShouldReturnValidLength() {
+        Random random = new Random();
+        long inputOne = 1;
+        long inputTwo = 2;
+        long inputThree = 3;
+        long inputRandom = abs(random.nextInt()) + 2;
+
+        assert lengthOfSequence(inputOne) == 1;
+        assert lengthOfSequence(inputTwo) == 2;
+        assert lengthOfSequence(inputThree) == 8;
+        assert lengthOfSequence(inputRandom) > 0;
+    }
+
+    @Test
+    public void lengthOfSequenceWithInvalidInputShouldThrowException() {
+        Random random = new Random();
+        long inputNegative = -(abs(random.nextInt()) + 2);
+        long inputZero = 0;
+        long inputLarge = (Long.MAX_VALUE - 1) / 3 + 1;
+
+        try {
+            int resultNegative = lengthOfSequence(inputNegative);
+            fail("Exception not thrown for negative input!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Test passed for negative input");
+        }
+
+        try {
+            int resultZero = lengthOfSequence(inputZero);
+            fail("Exception not thrown for input of zero!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Test passed for input of zero");
+        }
+
+        try {
+            int resultLarge = lengthOfSequence(inputLarge);
+            fail("Exception not thrown for large input!");
+        } catch (Exception e) {
+            System.out.println("Test passed for large input");
+        }
+    }
 }
