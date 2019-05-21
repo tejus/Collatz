@@ -129,13 +129,8 @@ public class Collatz {
         }
         long currentN = n;
         while (currentN > 1) {
-            if (currentN % 2 == 0) {
-                currentN /= 2;
-                result.add(currentN);
-            } else {
-                currentN = currentN * 3 + 1;
-                result.add(currentN);
-            }
+            currentN = collatz_1(currentN);
+            result.add(currentN);
         }
         return result;
     }
