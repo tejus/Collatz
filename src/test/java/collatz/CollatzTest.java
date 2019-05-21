@@ -92,7 +92,7 @@ public class CollatzTest {
         long inputEven = (long) abs(random.nextInt()) * 2 + 2;
         long inputOdd = (long) abs(random.nextInt()) * 2 + 1;
 
-        System.out.println("Testing with inputs " + inputOne + " " + inputEven + " " + inputOdd);
+        System.out.println("Testing collatz_1() with inputs " + inputOne + " " + inputEven + " " + inputOdd);
         assert collatz_1(inputOne) == 1;
         assert collatz_1(inputEven) == inputEven / 2;
         assert collatz_1(inputOdd) == inputOdd * 3 + 1;
@@ -107,22 +107,22 @@ public class CollatzTest {
 
         try {
             long resultNegative = collatz_1(inputNegative);
-            fail("Exception not thrown for negative input!");
+            fail("Exception not thrown for negative input in collatz_1()!");
         } catch (IllegalArgumentException e) {
-            System.out.println("Test passed for negative input");
+            System.out.println("collatz_1() test passed for negative input");
         }
 
         try {
             long resultZero = collatz_1(inputZero);
-            fail("Exception not thrown for input of zero!");
+            fail("Exception not thrown for input of zero in collatz_1()!");
         } catch (IllegalArgumentException e) {
-            System.out.println("Test passed for input of zero");
+            System.out.println("collatz_1() test passed for input of zero");
         }
         try {
             long resultLarge = collatz_1(inputLarge);
-            fail("Exception not thrown for large input!");
+            fail("Exception not thrown for large input in collatz_1()!");
         } catch (Exception e) {
-            System.out.println("Test passed for large input");
+            System.out.println("collatz_1() test passed for large input");
         }
     }
 
@@ -137,7 +137,7 @@ public class CollatzTest {
         List<Long> resultKnown = sequenceOf(inputKnown);
         List<Long> resultRandom = sequenceOf(inputRandom);
 
-        System.out.println("Testing with random input " + inputRandom);
+        System.out.println("Testing sequenceOf() with random input " + inputRandom);
         assert resultOne != null;
         assert resultOne.get(0) == 1;
         assert resultKnown != null;
@@ -156,25 +156,26 @@ public class CollatzTest {
 
         try {
             List<Long> resultNegative = sequenceOf(inputNegative);
-            fail("Exception not thrown for negative input!");
+            fail("Exception not thrown for negative input in sequenceOf()!");
         } catch (IllegalArgumentException e) {
-            System.out.println("Test passed for negative input");
+            System.out.println("sequenceOf() test passed for negative input");
         }
 
         try {
             List<Long> resultZero = sequenceOf(inputZero);
-            fail("Exception not thrown for input of zero!");
+            fail("Exception not thrown for input of zero in sequenceOf()!");
         } catch (IllegalArgumentException e) {
-            System.out.println("Test passed for input of zero");
+            System.out.println("sequenceOf() test passed for input of zero");
         }
 
         try {
             List<Long> resultLarge = sequenceOf(inputLarge);
-            fail("Exception not thrown for large input!");
+            fail("Exception not thrownfor large input in sequenceOf()!");
         } catch (Exception e) {
-            System.out.println("Test passed for large input");
+            System.out.println("sequenceOf() test passed for large input");
         }
     }
+
     @Test
     public void lengthOfSequenceShouldReturnValidLength() {
         Random random = new Random();
@@ -198,23 +199,23 @@ public class CollatzTest {
 
         try {
             int resultNegative = lengthOfSequence(inputNegative);
-            fail("Exception not thrown for negative input!");
+            fail("Exception not thrown for negative input in lengthOfSequence()!");
         } catch (IllegalArgumentException e) {
-            System.out.println("Test passed for negative input");
+            System.out.println("lengthOfSequence() test passed for negative input");
         }
 
         try {
             int resultZero = lengthOfSequence(inputZero);
-            fail("Exception not thrown for input of zero!");
+            fail("Exception not thrown for input of zero in lengthOfSequence()!");
         } catch (IllegalArgumentException e) {
-            System.out.println("Test passed for input of zero");
+            System.out.println("lengthOfSequence() test passed for input of zero");
         }
 
         try {
             int resultLarge = lengthOfSequence(inputLarge);
-            fail("Exception not thrown for large input!");
+            fail("Exception not thrown for large input in lengthOfSequence()!");
         } catch (Exception e) {
-            System.out.println("Test passed for large input");
+            System.out.println("lengthOfSequence() test passed for large input");
         }
     }
 }
