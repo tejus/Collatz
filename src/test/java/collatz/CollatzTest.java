@@ -244,7 +244,7 @@ public class CollatzTest {
         Random random = new Random();
         long inputNegative = -(abs(random.nextInt()) + 2);
         long inputZero = 0;
-        long inputValid = abs(random.nextInt()) + 2;
+        long inputValid = 40960000;
         long inputLarge = (Long.MAX_VALUE - 1) / 3;
         long inputLarger = (Long.MAX_VALUE - 1) / 3 + 1;
 

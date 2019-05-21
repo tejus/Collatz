@@ -142,10 +142,10 @@ public class Collatz {
     static List<Pair<Long, Integer>> equalLengthTwins(final long lo, final long hi) {
         //Check for values lesser than 1 or values that will push the result
         //out of the max range of long type.
-        if (lo < 1 || lo > (Long.MAX_VALUE - 1) / 3) {
+        if (lo < 1 || lo > 40960000) {
             throw new IllegalArgumentException("Input value out of range!");
         }
-        if (hi < 1 || hi > (Long.MAX_VALUE - 1) / 3 - 1) {
+        if (hi < 1 || hi > 40960000 - 1) {
             throw new IllegalArgumentException("Input value out of range!");
         }
 
