@@ -139,6 +139,10 @@ public class Collatz {
         return sequenceOf(n).size();
     }
 
+    static long largestValueInSequence(long n) {
+        return 0;
+    }
+
     static List<Pair<Long, Integer>> equalLengthTwins(final long lo, final long hi) {
         //Check for values lesser than 1 or values that will push the result
         //out of the max range of long type.
