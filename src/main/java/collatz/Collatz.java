@@ -1,5 +1,6 @@
 package collatz;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Collatz {
@@ -114,7 +115,28 @@ public class Collatz {
         }
     }
 
-    static List<Long> sequenceOf(long n) {
-        return null;
+    static List<Long> sequenceOf(final long n) {
+        //Check for values lesser than 1 or values that will push the result
+        //out of the max range of long type.
+        if (n < 1 || n > (Long.MAX_VALUE - 1) / 3) {
+            throw new IllegalArgumentException("Input value out of range!");
+        }
+
+        List<Long> result = new ArrayList<>();
+        result.add(n);
+        if (n == 1) {
+            return result;
+        }
+        long currentN = n;
+        while (currentN > 1) {
+            if (currentN % 2 == 0) {
+                currentN /= 2;
+                result.add(currentN);
+            } else {
+                currentN = currentN * 3 + 1;
+                result.add(currentN);
+            }
+        }
+        return result;
     }
 }
