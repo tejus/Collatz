@@ -139,7 +139,25 @@ public class Collatz {
         return sequenceOf(n).size();
     }
 
-    static List<Pair<Long, Integer>> equalLengthTwins(long lo, long hi) {
-        return null;
+    static List<Pair<Long, Integer>> equalLengthTwins(final long lo, final long hi) {
+        //Check for values lesser than 1 or values that will push the result
+        //out of the max range of long type.
+        if (lo < 1 || lo > (Long.MAX_VALUE - 1) / 3) {
+            throw new IllegalArgumentException("Input value out of range!");
+        }
+        if (hi < 1 || hi > (Long.MAX_VALUE - 1) / 3 - 1) {
+            throw new IllegalArgumentException("Input value out of range!");
+        }
+
+        int[] sequenceLengths = memoizedComputeSequenceLengths(hi + 1);
+
+        List<Pair<Long, Integer>> result = new ArrayList<>();
+        for (int i = (int) lo; i <= (int) hi; i++) {
+            if (sequenceLengths[i] == sequenceLengths[i + 1]) {
+                Pair<Long, Integer> pair = new Pair<>((long) i, sequenceLengths[i]);
+                result.add(pair);
+            }
+        }
+        return result;
     }
 }
