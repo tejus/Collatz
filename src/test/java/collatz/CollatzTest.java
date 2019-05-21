@@ -73,6 +73,7 @@ public class CollatzTest {
     }
 
     @Test
+    @Ignore("No need to run a twenty seconds long test each time")
     public void timeDifferenceShouldBePositive() {
         int length = 40960000;
         assert doTimings(length) > 0;
