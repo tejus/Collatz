@@ -173,7 +173,7 @@ public class CollatzTest {
 
         try {
             List<Long> resultLarge = sequenceOf(inputLarge);
-            fail("Exception not thrownfor large input in sequenceOf()!");
+            fail("Exception not thrown for large input in sequenceOf()!");
         } catch (Exception e) {
             System.out.println("sequenceOf() test passed for large input");
         }
@@ -223,12 +223,52 @@ public class CollatzTest {
     }
 
     @Test
+    public void largestValueInSequenceShouldReturnValidValue() {
+        long inputHundred = 100;
+        long largestValueInHundred = 100;
+        long inputPrime = 104723;
+        long largestValueInPrime = 1006504;
+
+        assert largestValueInSequence(inputHundred) == largestValueInHundred;
+        assert largestValueInSequence(inputPrime) == largestValueInPrime;
+    }
+
+    @Test
+    public void largestValueInSequenceWithInvalidInputShouldThrowException() {
+        Random random = new Random();
+        long inputNegative = -(abs(random.nextInt()) + 2);
+        long inputZero = 0;
+        long inputLarge = (Long.MAX_VALUE - 1) / 3 + 1;
+
+        try {
+            long resultNegative = largestValueInSequence(inputNegative);
+            fail("Exception not thrown for negative input in sequenceOf()!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("sequenceOf() test passed for negative input");
+        }
+
+        try {
+            long resultZero = largestValueInSequence(inputZero);
+            fail("Exception not thrown for input of zero in sequenceOf()!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("sequenceOf() test passed for input of zero");
+        }
+
+        try {
+            long resultLarge = largestValueInSequence(inputLarge);
+            fail("Exception not thrown for large input in sequenceOf()!");
+        } catch (Exception e) {
+            System.out.println("sequenceOf() test passed for large input");
+        }
+    }
+
+    @Test
     public void equalLengthTwinsOf28To30ShouldReturnTwoItems() {
         long lo = 28;
         long hi = 30;
 
-        List<Pair<Long, Integer>> resultOne =  equalLengthTwins(lo, lo);
-        List<Pair<Long, Integer>> resultTwo =  equalLengthTwins(lo, hi);
+        List<Pair<Long, Integer>> resultOne = equalLengthTwins(lo, lo);
+        List<Pair<Long, Integer>> resultTwo = equalLengthTwins(lo, hi);
 
         assert resultOne != null;
         assert resultTwo != null;
