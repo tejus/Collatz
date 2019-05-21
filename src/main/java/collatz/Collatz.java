@@ -1,6 +1,7 @@
 package collatz;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Collatz {
@@ -140,7 +141,9 @@ public class Collatz {
     }
 
     static long largestValueInSequence(long n) {
-        return 0;
+        List<Long> results = sequenceOf(n);
+        Collections.sort(results);
+        return results.get(results.size() - 1);
     }
 
     static List<Pair<Long, Integer>> equalLengthTwins(final long lo, final long hi) {
