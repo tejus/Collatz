@@ -101,7 +101,7 @@ public class Collatz {
     }
 
     static long collatz_1(long n) {
-        //Check for values lesser than 1 or values that will push the result
+        //Check for values lesser than 1 or values that might push the result
         //out of the max range of long type.
         if (n < 1 || n > (Long.MAX_VALUE - 1) / 3) {
             throw new IllegalArgumentException("Input value out of range!");
@@ -117,7 +117,7 @@ public class Collatz {
     }
 
     static List<Long> sequenceOf(final long n) {
-        //Check for values lesser than 1 or values that will push the result
+        //Check for values lesser than 1 or values that might push the result
         //out of the max range of long type.
         if (n < 1 || n > (Long.MAX_VALUE - 1) / 3) {
             throw new IllegalArgumentException("Input value out of range!");
@@ -151,7 +151,7 @@ public class Collatz {
         if (lo > hi) {
             throw new IllegalArgumentException("Incorrect input order!");
         }
-        //Check for values lesser than 1 or values that will push the result
+        //Check for values lesser than 1 or values that might push the result
         //out of the max range of long type.
         if (lo < 1 || lo > 40960000) {
             throw new IllegalArgumentException("Input value out of range!");
@@ -177,7 +177,7 @@ public class Collatz {
         if (lo > hi) {
             throw new IllegalArgumentException("Incorrect input order!");
         }
-        //Check for values lesser than 1 or values that will push the result
+        //Check for values lesser than 1 or values that might push the result
         //out of the max range of long type.
         if (lo < 1 || lo > 40960000) {
             throw new IllegalArgumentException("Input value out of range!");
@@ -202,7 +202,28 @@ public class Collatz {
         return result;
     }
 
-    static int[] occurrences(long n, int counts) {
-        return null;
+    static int[] occurrences(final long n, int counts) {
+        //Check for values lesser than 1 or values that might result in
+        //running out of heap space
+        if (n < 1 || n > 10000000) {
+            throw new IllegalArgumentException("Input value out of range!");
+        }
+        if (counts < 1) {
+            throw new IllegalArgumentException("Input value out of range!");
+        }
+
+        int[] occurrences = new int[counts + 1];
+        int count = 0;
+
+        for (long i = 1; i <= n; i++) {
+            List<Long> sequence = sequenceOf(i);
+            for (Long item : sequence) {
+                if (item <= counts) {
+                    occurrences[item.intValue()]++;
+                }
+            }
+        }
+        System.out.println(count);
+        return occurrences;
     }
 }
