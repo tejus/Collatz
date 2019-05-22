@@ -156,7 +156,7 @@ public class Collatz {
         if (lo < 1 || lo > 40960000) {
             throw new IllegalArgumentException("Input value out of range!");
         }
-        if (hi < 1 || hi > 40960000) {
+        if (hi > 40960000) {
             throw new IllegalArgumentException("Input value out of range!");
         }
 
@@ -182,7 +182,7 @@ public class Collatz {
         if (lo < 1 || lo > 40960000) {
             throw new IllegalArgumentException("Input value out of range!");
         }
-        if (hi < 1 || hi > 40960000) {
+        if (hi > 40960000) {
             throw new IllegalArgumentException("Input value out of range!");
         }
 
