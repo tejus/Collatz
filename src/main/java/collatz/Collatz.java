@@ -223,7 +223,6 @@ public class Collatz {
                 }
             }
         }
-        System.out.println(count);
         return occurrences;
     }
 }
