@@ -77,22 +77,21 @@ public class Collatz {
         long memoizedTime;
         int[] simple;
         int[] memoized;
+        System.out.print(n + " ");
 
         System.gc();
-        System.out.println("Starting test with simple method");
         startTime = System.nanoTime();
         simple = simpleComputeSequenceLengths(n);
         endTime = System.nanoTime();
         simpleTime = endTime - startTime;
-        System.out.println("Simple method took " + simpleTime / Math.pow(10, 6) + "ms to run");
+        System.out.print("Simple: " + simpleTime / Math.pow(10, 6) + "ms ");
 
         System.gc();
-        System.out.println("Starting test with memoized method");
         startTime = System.nanoTime();
         memoized = memoizedComputeSequenceLengths(n);
         endTime = System.nanoTime();
         memoizedTime = endTime - startTime;
-        System.out.println("Memoized method took " + memoizedTime / Math.pow(10, 6) + "ms to run");
+        System.out.print("Memoized: " + memoizedTime / Math.pow(10, 6) + "ms\n");
 
         for (int i = 1; i <= n; i++) {
             assert simple[i] == memoized[i];
@@ -224,5 +223,33 @@ public class Collatz {
             }
         }
         return occurrences;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Timings:");
+        for (int i = 100000; i <= 1000000; i += 100000) {
+            doTimings(i);
+        }
+
+        System.out.println("\nCollatz lengths, max, and sequence of 1 to 100:");
+        for (int i = 1; i <= 100; i++) {
+            System.out.println(String.format("%1$3d: length %2$3d, max %3$4d: ",
+                    i,
+                    lengthOfSequence(i),
+                    largestValueInSequence(i))
+                    + sequenceOf(i));
+        }
+
+        System.out.println("\nEqual length twins from collatz of 1 to 100:");
+        List<Pair<Long, Integer>> equalPairs = equalLengthTwins(1, 100);
+        for (Pair pair : equalPairs) {
+            System.out.println(pair);
+        }
+
+        System.out.println("\nOccurrences of 1 to 100 in collatz of 1 to 1,000,000:");
+        int[] occurrences = occurrences(1000000, 100);
+        for (int i = 0; i <= 100; i++) {
+            System.out.println(String.format("%1$3d: %2$-7d", i, occurrences[i]));
+        }
     }
 }
