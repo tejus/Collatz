@@ -9,11 +9,11 @@ public class Pair<A, B> {
         this.second = second;
     }
 
-    public A _1() {
+    private A _1() {
         return first;
     }
 
-    public B _2() {
+    private B _2() {
         return second;
     }
 
@@ -27,6 +27,6 @@ public class Pair<A, B> {
         if (this == obj) return true;
         else if (!(obj instanceof Pair)) return false;
         return this.first == ((Pair) obj)._1()
-                && this.second == ((Pair) obj).second;
+                && this.second == ((Pair) obj)._2();
     }
 }
