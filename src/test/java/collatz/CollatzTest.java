@@ -309,6 +309,14 @@ public class CollatzTest {
         } catch (IllegalArgumentException e) {
             System.out.println("lengthOfSequence() test passed for large hi input");
         }
+
+        long inputValidLo = 5;
+        try {
+            List<Pair<Long, Integer>> result = equalLengthTwins(inputValid, inputValidLo);
+            fail("Exception not thrown for inputs in lengthOfSequence()!");
+        } catch (IllegalArgumentException e) {
+            System.out.println("lengthOfSequence() test passed for incorrect order of inputs");
+        }
     }
 
     @Test
@@ -343,6 +351,14 @@ public class CollatzTest {
                     System.out.println("lengthOfSequence() test passed for invalid inputs "
                             + inputs.get(i) + " and " + inputs.get(j));
                 }
+            }
+
+            long inputValidLo = 5;
+            try {
+                List<Pair<Long, Long>> result = equalMaxValueTwins(inputValid, inputValidLo);
+                fail("Exception not thrown for inputs in lengthOfSequence()!");
+            } catch (IllegalArgumentException e) {
+                System.out.println("lengthOfSequence() test passed for incorrect order of inputs");
             }
         }
     }

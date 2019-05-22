@@ -147,6 +147,10 @@ public class Collatz {
     }
 
     static List<Pair<Long, Integer>> equalLengthTwins(final long lo, final long hi) {
+        //Make sure lo is actually lower than hi
+        if (lo > hi) {
+            throw new IllegalArgumentException("Incorrect input order!");
+        }
         //Check for values lesser than 1 or values that will push the result
         //out of the max range of long type.
         if (lo < 1 || lo > 40960000) {
@@ -169,6 +173,10 @@ public class Collatz {
     }
 
     static List<Pair<Long, Long>> equalMaxValueTwins(final long lo, final long hi) {
+        //Make sure lo is actually lower than hi
+        if (lo > hi) {
+            throw new IllegalArgumentException("Incorrect input order!");
+        }
         //Check for values lesser than 1 or values that will push the result
         //out of the max range of long type.
         if (lo < 1 || lo > 40960000) {
