@@ -201,4 +201,8 @@ public class Collatz {
         }
         return result;
     }
+
+    static int[] occurrences(long n, int counts) {
+        return null;
+    }
 }
