@@ -362,4 +362,44 @@ public class CollatzTest {
             }
         }
     }
+
+    @Test
+    public void occurrencesShouldReturnCorrectValuesFor0To2() {
+        long collatzRange = 100;
+        int countRange = 8;
+
+        int[] result = occurrences(collatzRange, countRange);
+
+        assert result != null;
+        assert result[0] == 0;
+        assert result[1] == collatzRange;
+        assert result[2] == collatzRange - 1;
+        assert result[4] == collatzRange - 2;
+        assert result[8] == collatzRange - 3;
+    }
+
+    @Test
+    public void occurrencesWithInvalidInputShouldThrowException() {
+        Random random = new Random();
+        long inputNegative = -(abs(random.nextInt()) + 2);
+        long inputZero = 0;
+        long inputValid = 10000000;
+        long inputLarge = (Long.MAX_VALUE - 1) / 3 + 1;
+
+        List<Long> inputs = new ArrayList<>(Arrays.asList(inputNegative, inputZero, inputValid, inputLarge));
+
+        for (int i = 0; i < inputs.size(); i++) {
+            for (int j = 0; j < inputs.size(); j++) {
+                try {
+                    if (i != 2 && j != 2) {
+                        int[] result = occurrences(inputs.get(i), inputs.get(j).intValue());
+                        fail("Exception not thrown for inputs in lengthOfSequence()!");
+                    }
+                } catch (IllegalArgumentException e) {
+                    System.out.println("lengthOfSequence() test passed for invalid inputs "
+                            + inputs.get(i) + " and " + inputs.get(j));
+                }
+            }
+        }
+    }
 }
